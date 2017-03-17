@@ -1,4 +1,4 @@
-% To calibrate the camera(projector) with this method everything should be
+  % To calibrate the camera(projector) with this method everything should be
 % on the same image.
 % revised by alphashi (yuexinshi@gmail.com)
 % 12/20/2012

@@ -26,21 +26,24 @@ active_images_proj = active_images;
 ind_active_proj = ind_active;
 
 % Position of the global structure wrt the projector:
-eval(['T_proj = Tc_' num2str(ind_active(1)) ';' ]);
-om_proj = omc_1;
+T_proj = T;
+om_proj = om;
 R_proj = rodrigues(om_proj);
-T_error_proj = Tc_error_1;
-om_error_proj = omc_error_1;
+T_error_proj = T_error;
+om_error_proj = om_error;
 
 % Loading camera parameters
-load Calib_Results alpha_c fc cc kc nx ny
+if exist('Calib_Results.mat', 'file')
+    load Calib_Results alpha_c fc cc kc nx ny
+elseif exist('Calib_Results_left.mat', 'file')
+    load Calib_Results_left alpha_c fc cc kc nx ny
+end
 alpha_c_cam = alpha_c;
 fc_cam = fc;
 cc_cam = cc;
 kc_cam =kc;
 nx_cam = nx;
 ny_cam = ny;
-
 
 % Restore Projector parameters
 
@@ -52,10 +55,10 @@ nx = nx_proj;
 ny = ny_proj;
 
 
-
-
-
-
 %%
 clear dX dY
-ext_calib_cam_proj;
+% original code
+% ext_calib_cam_proj;
+
+% use TOOLBOX_calib
+ext_calib_stereo

@@ -1,0 +1,18 @@
+########################################
+# In calib
+########################################
+
+nx: image width
+ny: image height
+dX: grid width
+dY: grid height
+n_sq_x: number of grids in x-axis
+n_sq_y: number of grids in y_axis
+
+########################################
+# In stereo_calib
+########################################
+
+Rc_left_i: the rotation bwteen the LEFT camera coordinate system to the global coordinate system (attached to the calibration plane)
+Rc_i: ?
+R_ref: rotation between the left and right camera
