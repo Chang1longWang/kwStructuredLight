@@ -1,4 +1,4 @@
-  % To calibrate the camera(projector) with this method everything should be
+% To calibrate the camera(projector) with this method everything should be
 % on the same image.
 % revised by alphashi (yuexinshi@gmail.com)
 % 12/20/2012
@@ -40,10 +40,10 @@ no_image = 1;
 % the stereo system use the left camera as the reference camera
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if exist('Calib_Results.mat', 'file')
-    if ~exist('Calib_Results_backup.mat', 'file')
-        copyfile('Calib_Results.mat', 'Calib_Results_backup.mat');
-    end
-    movefile('Calib_Results.mat', 'Calib_Results_left.mat');
+    copyfile('Calib_Results.mat', 'Calib_Results_left.mat');
+    movefile('Calib_Results.mat', 'Calib_Results_backup.mat');
+else
+    copyfile('Calib_Results_backup.mat', 'Calib_Results_left.mat');
 end
 
 % transform the 3D points to the world coordinate system
@@ -78,17 +78,23 @@ keep copy_ind_active copy_active_images copy_n_ima;
 load_stereo_calib_files;
 go_calib_stereo;
 
+if ~exist('Calib_Results_stereo.mat', 'file')
+    saving_stereo_calib
+end
+
 % update camera parameters
 m.fc = fc_left;
 m.cc = cc_left;
 m.kc = kc_left;
 m.alpha_c = alpha_c_left;
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% set a break point in the line below
+save_cam_proj_calib_refine
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % data preparation for display_projector_ext
 % useless if use stereo refinement
-
+%{
 %% Recovering
 ind_active=copy_ind_active;
 active_images=copy_active_images;
@@ -122,8 +128,9 @@ active_images_proj = active_images;
 ind_active_proj = ind_active;
 
 % Position of the global structure wrt the projector:
-T_proj = T;
-R_proj = R;
+load Calib_Results_left Rc_1 Tc_1
+T_proj = R * Tc_1 + T;
+R_proj = R * Rc_1;
 T_error_proj = T_error;
 om_error_proj = om_error;
 
@@ -147,5 +154,4 @@ nx = nx_proj;
 ny = ny_proj;
 n_sq_x = 6;
 n_sq_y = 6;
-
-save_cam_proj_calib
+%}

@@ -39,8 +39,8 @@ distReject  = Inf;      % rejection distance (for outlier removal)
 % Part I: Project Grey code sequence to recover illumination plane(s).
 
 % Load calibration data.
-load([objDir, 'proj_cam_calib/calib_results/calib_cam_proj.mat']);
-  
+load([objDir, 'calib_cam_proj/calib_results/calib_cam_proj.mat']);
+
 % Display prompt to begin scanning.
 clc; disp('[Reconstruction of Structured Light Sequences]');
 
@@ -53,6 +53,7 @@ for camIdx = 1:nCam
    dataDir = [objDir, objName, '/'];
    nBitPlanes{camIdx} = ((length(dir(dataDir))-2)-2)/4;
    I = imread([dataDir,'0000.jpg']);
+%    I = imread([dataDir,'0000.bmp']);
    camDim{camIdx} = [size(I,1) size(I,2)];
 end
 width = camDim{1}(2);
@@ -79,12 +80,16 @@ for camIdx = 1:nCam
    end
    T{1}{camIdx} = imread([dataDir,num2str(41,'%0.04d'),'.jpg']);
    T{2}{camIdx} = imread([dataDir,num2str(40,'%0.04d'),'.jpg']);
+%    T{1}{camIdx} = imread([dataDir,num2str(41,'%0.04d'),'.bmp']);
+%    T{2}{camIdx} = imread([dataDir,num2str(40,'%0.04d'),'.bmp']);
    frameIdx = 0;
    for j = 1:2
       for i = 1:nBitPlanes{camIdx}
          A{j,i}{camIdx} = imread([dataDir,num2str(frameIdx,'%0.04d'),'.jpg']);
+%          A{j,i}{camIdx} = imread([dataDir,num2str(frameIdx,'%0.04d'),'.bmp']);
          frameIdx = frameIdx + 1;
          B{j,i}{camIdx} = imread([dataDir,num2str(frameIdx,'%0.04d'),'.jpg']);
+%          B{j,i}{camIdx} = imread([dataDir,num2str(frameIdx,'%0.04d'),'.bmp']);
          frameIdx = frameIdx + 1;
       end
    end

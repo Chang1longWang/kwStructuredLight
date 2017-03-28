@@ -1,13 +1,13 @@
 if ~exist('Projector_images_check')
    fprintf(1,'The projector image set needs initialization.\n');
    return;
-end;
+end
 
 if ~exist('ind_active') |~exist('n_ima') |~exist('active_images') 
    dummyCode;
 end
 
-% save 3DPoints ind_active n_ima active_images Origin_active_images
+save 3DPoints ind_active n_ima active_images Origin_active_images
 
 msgbox('Select the projected pattern');
 
@@ -21,7 +21,7 @@ winty = round(winty);
 
 fprintf(1,'Window size = %dx%d\n',2*wintx+1,2*winty+1);
 
-for i=[]
+for i=ind_active
 
     %   extrinsic_computation;
     % Return:

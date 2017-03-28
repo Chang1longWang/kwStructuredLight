@@ -43,7 +43,7 @@ colors = 'brgkcm';
 
 %%% Show the extrinsic parameters
 
-if ~exist('dX'),
+if ~exist('dX')
     eval(['dX = norm(Tc_' num2str(ind_active(1)) ')/10;']);
     dY = dX;
 end;

@@ -2,17 +2,25 @@
 # In calib
 ########################################
 
-nx: image width
-ny: image height
 dX: grid width
 dY: grid height
+ex_i: ???
 n_sq_x: number of grids in x-axis
 n_sq_y: number of grids in y_axis
+nx: image width
+ny: image height
+omc_i: rotation vector
+Rc_i: rotation matrix between world coordinate system to camera coordinate system
+Tc_i: translation vector between world coordinate system to camera coordinate system
+wintx: half window width
+winty: half window height
+x_i: 2D image point
+X_i: 3D scene point
 
 ########################################
 # In stereo_calib
 ########################################
 
-Rc_left_i: the rotation bwteen the LEFT camera coordinate system to the global coordinate system (attached to the calibration plane)
+Rc_left_i: the rotation matrix from Calibrate_Results_left
 Rc_i: ?
 R_ref: rotation between the left and right camera

@@ -8,21 +8,21 @@
 % the camera or other source)
 
 quest_sameImages = input('Do you want use the same images used for camera calibration to calibrate the projector? ([]=yes, other=no) ');
-quest_sameImages = ~isempty(quest_sameImages);
+quest_sameImages = isempty(quest_sameImages);
 quest_sameCamProj = input('Do the printed and projected patterns in the same image?  ([]=yes, other=no) ');
-quest_sameCamProj = ~isempty(quest_sameCamProj);
+quest_sameCamProj = isempty(quest_sameCamProj);
 
-if ~quest_sameImages
+if quest_sameImages % use the same images
 
     %-- Save the camera calibration results in side variables
     %   and the rotation and translation of each plane
-    save Camera_data KK fc cc kc alpha_c dX dY wintx winty n_ima calib_name first_num format_image nx ny Origin_active_images
+    save Camera_data KK fc cc kc alpha_c dX dY wintx winty n_ima calib_name first_num format_image nx ny n_sq_x_1 n_sq_y_1 Origin_active_images
     for i=ind_active
         eval(['save Camera_data Tc_' num2str(i) ' Rc_' num2str(i) ' -append;']);
     end
     
     % KW: specify the name of the projector
-    if quest_sameCamProj
+    if ~quest_sameCamProj
         data_calib;
         proj_name = calib_name;
     end
@@ -30,7 +30,7 @@ if ~quest_sameImages
    	keep 'proj_name';
     load Camera_data
 
-else
+else % not using the same images for projector calibration, assuming the the intrinsic unchanged while the extrinsics need to be updated
     %-- Save the camera calibration results
     save Camera_data KK fc cc kc alpha_c
     clear all;
