@@ -39,7 +39,7 @@ distReject  = Inf;      % rejection distance (for outlier removal)
 % Part I: Project Grey code sequence to recover illumination plane(s).
 
 % Load calibration data.
-load([objDir, 'calib_cam_proj/calib_results/calib_cam_proj.mat']);
+load([objDir, 'calib_sl/calib_results/calib_cam_proj.mat']);
 
 % Display prompt to begin scanning.
 clc; disp('[Reconstruction of Structured Light Sequences]');
@@ -78,8 +78,8 @@ for camIdx = 1:nCam
    if ~exist(dataDir,'dir')
       error([objDir, objName,'_',seqType,' is not available!']);
    end
-   T{1}{camIdx} = imread([dataDir,num2str(41,'%0.04d'),'.jpg']);
-   T{2}{camIdx} = imread([dataDir,num2str(40,'%0.04d'),'.jpg']);
+   T{1}{camIdx} = imread([dataDir,num2str(40,'%0.04d'),'.jpg']);
+   T{2}{camIdx} = imread([dataDir,num2str(41,'%0.04d'),'.jpg']);
 %    T{1}{camIdx} = imread([dataDir,num2str(41,'%0.04d'),'.bmp']);
 %    T{2}{camIdx} = imread([dataDir,num2str(40,'%0.04d'),'.bmp']);
    frameIdx = 0;

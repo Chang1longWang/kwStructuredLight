@@ -56,7 +56,7 @@ end
 
 % calibrate the projector
 go_calib_optim
-dX = 100; dY = 100;
+dX = 30; dY = 30;
 saving_calib;
 movefile('Calib_Results.mat', 'Calib_Results_right.mat');
 
@@ -96,8 +96,8 @@ nx_proj       = 1024;
 ny_proj       = 768;
 n_sq_x_1_proj = 6;
 n_sq_y_1_proj = 6;
-dX_proj       = 100;
-dY_proj       = 100;
+dX_proj       = 30;
+dY_proj       = 30;
 
 % store camera calibration results
 camIndex = 1;
@@ -117,6 +117,7 @@ n_sq_y_1_cam{camIndex} = n_sq_y_1;
 dX_cam{camIndex}       = dX;
 dY_cam{camIndex}       = dY;
 
+addpath('C:\Users\Daniela\Documents\3D_Recon\kwStructuredLight\utilities')
 procamCalibDisplay;
 for i = 1
    hold on;
